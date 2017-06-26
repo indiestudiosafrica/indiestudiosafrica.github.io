@@ -1,0 +1,96 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Indie Studios Africa</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+        <link rel="stylesheet" href="assets/css/main.css" />
+        <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+        <!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+
+        <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase-database.js"></script>
+        <script>
+            // Initialize Firebase
+            var config = {
+                apiKey: "AIzaSyAreN2H0O-XJUR4vScCRBbT8QJOHj7hElc",
+                authDomain: "indie-studios-africa.firebaseapp.com",
+                databaseURL: "https://indie-studios-africa.firebaseio.com",
+                storageBucket: "indie-studios-africa.appspot.com",
+                messagingSenderId: "1048610983686"
+            };
+            firebase.initializeApp(config);
+        </script>
+
+    </head>
+
+    <body>
+
+        <!-- Header -->
+        <header id="header">
+            <div id="header-logo">
+                <a href="/index.html" style="border-bottom: none;">
+                    <img src="images/logo.png" style="width:140px; height:140px; margin-top:-36px;"/>
+                </a>
+            </div>
+            <div>
+                <blockquote id="catch" style="text-align:centre; display:block; padding:0 20px; font-size:12px;">
+                    <font size="3">Independetly Creative</font>
+                </blockquote>
+            </div>
+            <p style="font-size:14px">Almost, stay tuned to get updates on Facebook <a href="https://www.facebook.com/indiestudiosafrica">@indiestudiosafrica</a>.
+            </p>
+        </header>
+
+        <!-- Signup Form -->
+        <p style="font-size:14px; margin-bottom:10px">Sign up to receive updates.</p>
+        <form id="signup-form" method="post" action="#">
+            <input type="email" name="email" id="email" placeholder="Email Address" />
+            <input id="signmaillist" type="submit" value="Sign Up" />
+        </form>
+
+        <!-- Footer -->
+        <footer id="footer">
+            <p style="font-size:14px; margin-bottom:14px">We're active on these platforms &darr;</p>
+            <ul class="icons">
+                <li><a href="https://twitter.com/indiestudiosa" class="icon fa-twitter" id="twitter"><span class="label">Twitter</span></a></li>
+                <li><a href="https://www.instagram.com/indiestudiosa/" class="icon fa-instagram" id="instagram"><span class="label">Instagram</span></a></li>
+                <li><a href="https://www.facebook.com/indiestudiosafrica" class="icon fa-facebook" id="facebook"><span class="label">Facebook</span></a></li>
+                <!--                <li><a href="#" class="icon fa-medium" id="medium"><span class="label">Medium</span></a></li>-->
+                <li><a href="mailto:indiestudiosafrica@gmail.com" class="icon fa-envelope-o" id="email"><span class="label">Email</span></a></li>
+            </ul>
+            <ul class="copyright">
+                <li>&copy; Indie Studios Africa.</li>
+            </ul>
+        </footer>
+        <!-- Scripts -->
+        <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+        <script src="assets/js/main.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+        <script>
+
+            function isValidEmailAddress(emailAddress) {
+                var pattern = new RegExp(/^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i);
+                // alert( pattern.test(emailAddress) );
+                return pattern.test(emailAddress);
+            };
+
+            $("#signmaillist").click(function(){
+                var email = $("#email").val();
+                if(isValidEmailAddress(email)){
+                    firebase.database().ref('users/').push({
+                        email: email
+                    });
+                } else {
+
+                }
+            });
+
+        </script>
+
+    </body>
+
+</html>
